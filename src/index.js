@@ -38,10 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
     button.setAttribute("class", "like-btn");
     button.setAttribute("id", toy.id);
     button.addEventListener("click", (e) => {
-      //console.log(e.target.toy);
+      e.preventDefault();
+      const updatedLike = ++toy.likes;
+      fetch(`${toyAPI}/${toy.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ likes: updatedLike }),
+      })
+        .then((res) => res.json())
+        .then((data) => (p.innerText = `likes: ${data.likes}`));
 
-      p.innerText = `likes: ${++toy.likes}`;
-      console.log(toy.likes);
+      // p.innerText = `likes: ${++toy.likes}`;
+      // console.log(toy.likes);
     });
     // function handleLike() {}
 
