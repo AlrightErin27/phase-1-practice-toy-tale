@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const toyFormContainer = document.querySelector(".container");
   const form = document.querySelector("form");
 
-  //-----------------RENDER API TOYS() renders the toys already in the API
+  //-----------------RENDER API TOYS() renders the toys already in the API--> then new ones once added
   function renderPreMadeToys(toysArr) {
     //console.log("🧸", toysArr);
     toysArr.forEach(displayToyCardsIndividually);
   }
 
-  //-----------------Fxn used in .forEach above^^^ creates a card and displays it for all toys, new or old
+  //-----------------Fxn used in .forEach above^^^ creates a card and displays it for all toys
   function displayToyCardsIndividually(toy) {
     let h2 = document.createElement("h2");
     h2.innerText = toy.name;
@@ -37,6 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
     button.innerText = "like";
     button.setAttribute("class", "like-btn");
     button.setAttribute("id", toy.id);
+    button.addEventListener("click", (e) => {
+      //console.log(e.target.toy);
+
+      p.innerText = `likes: ${++toy.likes}`;
+      console.log(toy.likes);
+    });
+    // function handleLike() {}
 
     let toyCardDiv = document.createElement("div");
     toyCardDiv.append(h2, img, p, button);
