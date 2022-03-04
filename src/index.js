@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toysArr.forEach(displayToyCardsIndividually);
   }
 
+  //-----------------Fxn used in .forEach above^^^ creates a card and displays it for all toys, new or old
   function displayToyCardsIndividually(toy) {
     let h2 = document.createElement("h2");
     h2.innerText = toy.name;
@@ -49,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
     addToy = !addToy;
     if (addToy) {
       toyFormContainer.style.display = "block";
+
+      //-----------------EVENT LISTER() submitting a new toy in the form
       form.addEventListener("submit", addNewToy);
       function addNewToy(e) {
         e.preventDefault();
@@ -62,6 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
         displayToyCardsIndividually(toy);
         form.reset();
       }
+
+      //-----------------EVENT LISTER() for adding a like++
+      // document.querySelector(".like-btn").addEventListener("click", (e) => {
+      //   // e.preventDefault();
+      //   console.log(e.target.name.value);
+      // });
+
+      //
     } else {
       //if button not clicked, don't display toy container
       toyFormContainer.style.display = "none";
